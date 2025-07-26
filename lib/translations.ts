@@ -1,6 +1,99 @@
-export const translations = {
+export type TranslationKey =
+  | "home"
+  | "products"
+  | "categories"
+  | "about"
+  | "contact"
+  | "cart"
+  | "wishlist"
+  | "login"
+  | "register"
+  | "search"
+  | "addToCart"
+  | "addToWishlist"
+  | "viewDetails"
+  | "featuredProducts"
+  | "newProducts"
+  | "allProducts"
+  | "price"
+  | "inStock"
+  | "outOfStock"
+  | "brand"
+  | "rating"
+  | "reviews"
+  | "description"
+  | "specifications"
+  | "features"
+  | "relatedProducts"
+  | "sortBy"
+  | "filterBy"
+  | "priceRange"
+  | "clearFilters"
+  | "noProductsFound"
+  | "loading"
+  | "error"
+  | "tryAgain"
+  | "backToHome"
+  | "quantity"
+  | "total"
+  | "checkout"
+  | "continueShopping"
+  | "removeFromCart"
+  | "updateQuantity"
+  | "emptyCart"
+  | "emptyWishlist"
+  | "loginRequired"
+  | "pleaseLogin"
+  | "email"
+  | "password"
+  | "confirmPassword"
+  | "firstName"
+  | "lastName"
+  | "phone"
+  | "address"
+  | "city"
+  | "country"
+  | "zipCode"
+  | "save"
+  | "cancel"
+  | "edit"
+  | "delete"
+  | "confirm"
+  | "success"
+  | "welcome"
+  | "thankYou"
+  | "orderPlaced"
+  | "orderHistory"
+  | "profile"
+  | "settings"
+  | "logout"
+  | "darkMode"
+  | "lightMode"
+  | "language"
+  | "currency"
+  | "shipping"
+  | "freeShipping"
+  | "fastDelivery"
+  | "warranty"
+  | "returnPolicy"
+  | "customerSupport"
+  | "newsletter"
+  | "subscribe"
+  | "unsubscribe"
+  | "privacyPolicy"
+  | "termsOfService"
+  | "faq"
+  | "help"
+  | "contactUs"
+  | "phoneNumber"
+  | "emailAddress"
+  | "workingHours"
+  | "location"
+  | "followUs"
+  | "socialMedia"
+
+export const translations: Record<"az" | "en" | "ru", Record<TranslationKey, string>> = {
   az: {
-    // Navigation
     home: "Ana səhifə",
     products: "Məhsullar",
     categories: "Kateqoriyalar",
@@ -8,168 +101,93 @@ export const translations = {
     contact: "Əlaqə",
     cart: "Səbət",
     wishlist: "İstək siyahısı",
-    login: "Giriş",
+    login: "Daxil ol",
     register: "Qeydiyyat",
-    logout: "Çıxış",
-    orders: "Sifarişlər",
-    help: "Yardım",
-    profile: "Profil",
-    settings: "Ayarlar",
-
-    // Search
-    searchPlaceholder: "Məhsul axtarın...",
-
-    // Hero Section
-    heroTitle: "Ən Son Texnologiya",
-    heroSubtitle: "Əlverişli Qiymətlərlə",
-    heroDescription:
-      "Top brendlərdən ən son texnologiya məhsullarını kəşf edin. Keyfiyyət zəmanəti, sürətli çatdırılma və mükəmməl müştəri xidməti.",
-    shopNow: "İndi Alış-Veriş Et",
-    viewCategories: "Kateqoriyalara Bax",
-
-    // Features
-    fastDelivery: "Sürətli Çatdırılma",
-    warranty: "2 İl Zəmanət",
-    freeShipping: "Pulsuz Çatdırılma",
-
-    // Products
-    featuredProducts: "Seçilmiş Məhsullar",
-    featuredDescription: "Ən son və ən yaxşı texnologiya məhsullarımızdan seçilmiş kolleksiya",
+    search: "Axtarış",
     addToCart: "Səbətə əlavə et",
     addToWishlist: "İstək siyahısına əlavə et",
-    removeFromWishlist: "İstək siyahısından sil",
+    viewDetails: "Təfərrüatları gör",
+    featuredProducts: "Seçilmiş məhsullar",
+    newProducts: "Yeni məhsullar",
+    allProducts: "Bütün məhsullar",
+    price: "Qiymət",
     inStock: "Stokda",
-    outOfStock: "Stokda yoxdur",
-    viewAllProducts: "Bütün Məhsulları Gör",
-
-    // Categories
-    categoriesTitle: "Kateqoriyalar",
-    categoriesDescription: "Geniş texnologiya kateqoriyalarımızı araşdırın və axtardığınızı tapın",
-    computers: "Kompüterlər",
-    accessories: "Aksesuarlar",
-    smartphones: "Smartfonlar",
-    laptops: "Laptoplar",
-    audio: "Audio",
-    wearables: "Saatlar",
-    cameras: "Kameralar",
-    gaming: "Oyun",
-
-    // Auth
-    email: "Email",
-    password: "Şifrə",
-    name: "Ad",
-    surname: "Soyad",
-    loginRequired: "Giriş tələb olunur",
-    loginRequiredDesc: "Məhsul əlavə etmək üçün hesaba giriş edin.",
-
-    // Cart
-    cartTitle: "Səbət",
-    cartEmpty: "Səbətiniz boşdur",
-    cartEmptyDesc: "Səbətinizə məhsul əlavə etmək üçün alış-verişə başlayın.",
-    clearCart: "Səbəti təmizlə",
-    orderSummary: "Sifariş xülasəsi",
-    total: "Cəmi",
-    checkout: "Sifarişi tamamla",
-
-    // Wishlist
-    wishlistTitle: "İstək siyahısı",
-    wishlistEmpty: "İstək siyahınız boşdur",
-    wishlistEmptyDesc: "Bəyəndiyiniz məhsulları istək siyahınıza əlavə edin.",
-    clearWishlist: "Siyahını təmizlə",
-
-    // Theme
-    lightTheme: "Açıq tema",
-    darkTheme: "Qaranlıq tema",
-    systemTheme: "Sistem teması",
-    selectColor: "Rəng seçin",
-
-    // Newsletter
-    newsletterTitle: "Xəbərlərdən Xəbərdar Olun",
-    newsletterDesc:
-      "Xəbər bülletenimizə abunə olun və yeni məhsullar, eksklüziv endirimlər və texnologiya məlumatları haqqında ilk öyrənin.",
-    subscribe: "Abunə Ol",
-    enterEmail: "Email ünvanınızı daxil edin",
-
-    // Loading
+    outOfStock: "Stokda yox",
+    brand: "Brend",
+    rating: "Reytinq",
+    reviews: "Rəylər",
+    description: "Təsvir",
+    specifications: "Xüsusiyyətlər",
+    features: "Özəlliklər",
+    relatedProducts: "Oxşar məhsullar",
+    sortBy: "Sırala",
+    filterBy: "Filtrə et",
+    priceRange: "Qiymət aralığı",
+    clearFilters: "Filterləri təmizlə",
+    noProductsFound: "Məhsul tapılmadı",
     loading: "Yüklənir...",
-    wait: "Gözləyin...",
-
-    // Messages
-    addedToCart: "Səbətə əlavə edildi",
-    addedToWishlist: "İstək siyahısına əlavə edildi",
-    removedFromWishlist: "İstək siyahısından silindi",
-    cartCleared: "Səbət təmizləndi",
-    wishlistCleared: "İstək siyahısı təmizləndi",
-    subscribed: "Abunə olundu!",
-    subscribedDesc: "Xəbər bülletenimizə abunə olduğunuz üçün təşəkkür edirik.",
-
-    // Orders
-    ordersTitle: "Sifarişlərim",
-    ordersDescription: "Sifarişlərinizin statusunu izləyin",
-    orderNumber: "Sifariş nömrəsi",
-    orderDate: "Tarix",
-    orderStatus: "Status",
-    orderTotal: "Məbləğ",
-    processing: "İşlənir",
-    shipped: "Göndərildi",
-    delivered: "Çatdırıldı",
-    viewDetails: "Təfərrüatlar",
-    trackOrder: "İzlə",
-    reorder: "Yenidən Sifariş Et",
-
-    // Profile
-    profileTitle: "Profil",
-    profileDescription: "Hesab məlumatlarınızı idarə edin",
-    personalInfo: "Şəxsi Məlumatlar",
-    contactInfo: "Əlaqə Məlumatları",
-    addressInfo: "Ünvan Məlumatları",
-    editProfile: "Profili Redaktə Et",
-    saveChanges: "Dəyişiklikləri Saxla",
-    cancelChanges: "Ləğv Et",
+    error: "Xəta",
+    tryAgain: "Yenidən cəhd et",
+    backToHome: "Ana səhifəyə qayıt",
+    quantity: "Miqdar",
+    total: "Cəmi",
+    checkout: "Ödəniş",
+    continueShopping: "Alış-verişə davam et",
+    removeFromCart: "Səbətdən sil",
+    updateQuantity: "Miqdarı yenilə",
+    emptyCart: "Səbət boşdur",
+    emptyWishlist: "İstək siyahısı boşdur",
+    loginRequired: "Giriş tələb olunur",
+    pleaseLogin: "Zəhmət olmasa daxil olun",
+    email: "E-poçt",
+    password: "Şifrə",
+    confirmPassword: "Şifrəni təsdiq et",
+    firstName: "Ad",
+    lastName: "Soyad",
     phone: "Telefon",
     address: "Ünvan",
     city: "Şəhər",
-    zipCode: "Poçt Kodu",
-
-    // Help
-    helpTitle: "Yardım Mərkəzi",
-    helpDescription: "Suallarınızın cavabını tapın və ya bizimlə əlaqə saxlayın",
-    faq: "Tez-tez Verilən Suallar",
-    contactUs: "Bizimlə Əlaqə",
-    phoneSupport: "Telefon Dəstəyi",
-    emailSupport: "Email Dəstəyi",
-    liveChat: "Canlı Söhbət",
-    sendMessage: "Mesaj Göndər",
-    subject: "Mövzu",
-    message: "Mesaj",
-
-    // Checkout
-    checkoutTitle: "Ödəniş",
-    paymentInfo: "Ödəniş Məlumatları",
-    shippingAddress: "Çatdırılma Ünvanı",
-    cardDetails: "Kart Məlumatları",
-    cardName: "Kart Sahibinin Adı",
-    cardNumber: "Kart Nömrəsi",
-    expiryDate: "Son İstifadə Tarixi",
-    cvv: "CVV",
-    placeOrder: "Sifarişi Ver",
-    orderComplete: "Sifariş Tamamlandı!",
-    orderSuccess: "Sifarişiniz uğurla qəbul edildi və tezliklə hazırlanacaq.",
-    continueShopping: "Alış-verişə Davam Et",
-
-    // Footer
-    footerDescription:
-      "Ən son texnologiya məhsulları üçün etibarlı tərəfdaşınız. 2020-ci ildən bəri keyfiyyət, innovasiya və mükəmməl xidmət.",
-    company: "Şirkət",
-    support: "Dəstək",
-    legal: "Hüquqi",
-    followUs: "Bizi İzləyin",
-    allRightsReserved: "Bütün hüquqlar qorunur.",
-    madeWithLove: "Texnologiya həvəskarları üçün ❤️ ilə hazırlanmışdır",
+    country: "Ölkə",
+    zipCode: "Poçt kodu",
+    save: "Saxla",
+    cancel: "Ləğv et",
+    edit: "Redaktə et",
+    delete: "Sil",
+    confirm: "Təsdiq et",
+    success: "Uğurlu",
+    welcome: "Xoş gəlmisiniz",
+    thankYou: "Təşəkkür edirik",
+    orderPlaced: "Sifariş verildi",
+    orderHistory: "Sifariş tarixçəsi",
+    profile: "Profil",
+    settings: "Tənzimləmələr",
+    logout: "Çıxış",
+    darkMode: "Qaranlıq rejim",
+    lightMode: "İşıqlı rejim",
+    language: "Dil",
+    currency: "Valyuta",
+    shipping: "Çatdırılma",
+    freeShipping: "Pulsuz çatdırılma",
+    fastDelivery: "Sürətli çatdırılma",
+    warranty: "Zəmanət",
+    returnPolicy: "Qaytarma siyasəti",
+    customerSupport: "Müştəri dəstəyi",
+    newsletter: "Xəbər bülleteni",
+    subscribe: "Abunə ol",
+    unsubscribe: "Abunəlikdən çıx",
+    privacyPolicy: "Məxfilik siyasəti",
+    termsOfService: "İstifadə şərtləri",
+    faq: "Tez-tez verilən suallar",
+    help: "Kömək",
+    contactUs: "Bizimlə əlaqə",
+    phoneNumber: "Telefon nömrəsi",
+    emailAddress: "E-poçt ünvanı",
+    workingHours: "İş saatları",
+    location: "Ünvan",
+    followUs: "Bizi izləyin",
+    socialMedia: "Sosial media",
   },
-
   en: {
-    // Navigation
     home: "Home",
     products: "Products",
     categories: "Categories",
@@ -179,166 +197,91 @@ export const translations = {
     wishlist: "Wishlist",
     login: "Login",
     register: "Register",
-    logout: "Logout",
-    orders: "Orders",
-    help: "Help",
-    profile: "Profile",
-    settings: "Settings",
-
-    // Search
-    searchPlaceholder: "Search products...",
-
-    // Hero Section
-    heroTitle: "Latest Technology",
-    heroSubtitle: "At Unbeatable Prices",
-    heroDescription:
-      "Discover cutting-edge technology products from top brands. Quality guaranteed, fast shipping, and exceptional customer service.",
-    shopNow: "Shop Now",
-    viewCategories: "View Categories",
-
-    // Features
-    fastDelivery: "Fast Delivery",
-    warranty: "2 Year Warranty",
-    freeShipping: "Free Shipping",
-
-    // Products
-    featuredProducts: "Featured Products",
-    featuredDescription: "Discover our handpicked selection of the latest and greatest tech products",
+    search: "Search",
     addToCart: "Add to Cart",
     addToWishlist: "Add to Wishlist",
-    removeFromWishlist: "Remove from Wishlist",
+    viewDetails: "View Details",
+    featuredProducts: "Featured Products",
+    newProducts: "New Products",
+    allProducts: "All Products",
+    price: "Price",
     inStock: "In Stock",
     outOfStock: "Out of Stock",
-    viewAllProducts: "View All Products",
-
-    // Categories
-    categoriesTitle: "Categories",
-    categoriesDescription: "Explore our wide range of technology categories and find exactly what you're looking for",
-    computers: "Computers",
-    accessories: "Accessories",
-    smartphones: "Smartphones",
-    laptops: "Laptops",
-    audio: "Audio",
-    wearables: "Wearables",
-    cameras: "Cameras",
-    gaming: "Gaming",
-
-    // Auth
-    email: "Email",
-    password: "Password",
-    name: "Name",
-    surname: "Surname",
-    loginRequired: "Login Required",
-    loginRequiredDesc: "Please login to add products to cart.",
-
-    // Cart
-    cartTitle: "Cart",
-    cartEmpty: "Your cart is empty",
-    cartEmptyDesc: "Start shopping to add products to your cart.",
-    clearCart: "Clear Cart",
-    orderSummary: "Order Summary",
+    brand: "Brand",
+    rating: "Rating",
+    reviews: "Reviews",
+    description: "Description",
+    specifications: "Specifications",
+    features: "Features",
+    relatedProducts: "Related Products",
+    sortBy: "Sort By",
+    filterBy: "Filter By",
+    priceRange: "Price Range",
+    clearFilters: "Clear Filters",
+    noProductsFound: "No Products Found",
+    loading: "Loading...",
+    error: "Error",
+    tryAgain: "Try Again",
+    backToHome: "Back to Home",
+    quantity: "Quantity",
     total: "Total",
     checkout: "Checkout",
-
-    // Wishlist
-    wishlistTitle: "Wishlist",
-    wishlistEmpty: "Your wishlist is empty",
-    wishlistEmptyDesc: "Add your favorite products to your wishlist.",
-    clearWishlist: "Clear Wishlist",
-
-    // Theme
-    lightTheme: "Light Theme",
-    darkTheme: "Dark Theme",
-    systemTheme: "System Theme",
-    selectColor: "Select Color",
-
-    // Newsletter
-    newsletterTitle: "Stay Updated",
-    newsletterDesc:
-      "Subscribe to our newsletter and be the first to know about new products, exclusive deals, and tech insights.",
-    subscribe: "Subscribe",
-    enterEmail: "Enter your email",
-
-    // Loading
-    loading: "Loading...",
-    wait: "Please wait...",
-
-    // Messages
-    addedToCart: "Added to Cart",
-    addedToWishlist: "Added to Wishlist",
-    removedFromWishlist: "Removed from Wishlist",
-    cartCleared: "Cart Cleared",
-    wishlistCleared: "Wishlist Cleared",
-    subscribed: "Subscribed!",
-    subscribedDesc: "Thank you for subscribing to our newsletter.",
-
-    // Orders
-    ordersTitle: "My Orders",
-    ordersDescription: "Track the status of your orders",
-    orderNumber: "Order number",
-    orderDate: "Date",
-    orderStatus: "Status",
-    orderTotal: "Amount",
-    processing: "Processing",
-    shipped: "Shipped",
-    delivered: "Delivered",
-    viewDetails: "Details",
-    trackOrder: "Track",
-    reorder: "Reorder",
-
-    // Profile
-    profileTitle: "Profile",
-    profileDescription: "Manage your account information",
-    personalInfo: "Personal Information",
-    contactInfo: "Contact Information",
-    addressInfo: "Address Information",
-    editProfile: "Edit Profile",
-    saveChanges: "Save Changes",
-    cancelChanges: "Cancel",
+    continueShopping: "Continue Shopping",
+    removeFromCart: "Remove from Cart",
+    updateQuantity: "Update Quantity",
+    emptyCart: "Cart is Empty",
+    emptyWishlist: "Wishlist is Empty",
+    loginRequired: "Login Required",
+    pleaseLogin: "Please Login",
+    email: "Email",
+    password: "Password",
+    confirmPassword: "Confirm Password",
+    firstName: "First Name",
+    lastName: "Last Name",
     phone: "Phone",
     address: "Address",
     city: "City",
+    country: "Country",
     zipCode: "Zip Code",
-
-    // Help
-    helpTitle: "Help Center",
-    helpDescription: "Find answers to your questions or contact us",
-    faq: "Frequently Asked Questions",
+    save: "Save",
+    cancel: "Cancel",
+    edit: "Edit",
+    delete: "Delete",
+    confirm: "Confirm",
+    success: "Success",
+    welcome: "Welcome",
+    thankYou: "Thank You",
+    orderPlaced: "Order Placed",
+    orderHistory: "Order History",
+    profile: "Profile",
+    settings: "Settings",
+    logout: "Logout",
+    darkMode: "Dark Mode",
+    lightMode: "Light Mode",
+    language: "Language",
+    currency: "Currency",
+    shipping: "Shipping",
+    freeShipping: "Free Shipping",
+    fastDelivery: "Fast Delivery",
+    warranty: "Warranty",
+    returnPolicy: "Return Policy",
+    customerSupport: "Customer Support",
+    newsletter: "Newsletter",
+    subscribe: "Subscribe",
+    unsubscribe: "Unsubscribe",
+    privacyPolicy: "Privacy Policy",
+    termsOfService: "Terms of Service",
+    faq: "FAQ",
+    help: "Help",
     contactUs: "Contact Us",
-    phoneSupport: "Phone Support",
-    emailSupport: "Email Support",
-    liveChat: "Live Chat",
-    sendMessage: "Send Message",
-    subject: "Subject",
-    message: "Message",
-
-    // Checkout
-    checkoutTitle: "Checkout",
-    paymentInfo: "Payment Information",
-    shippingAddress: "Shipping Address",
-    cardDetails: "Card Details",
-    cardName: "Cardholder Name",
-    cardNumber: "Card Number",
-    expiryDate: "Expiry Date",
-    cvv: "CVV",
-    placeOrder: "Place Order",
-    orderComplete: "Order Complete!",
-    orderSuccess: "Your order has been successfully placed and will be processed soon.",
-    continueShopping: "Continue Shopping",
-
-    // Footer
-    footerDescription:
-      "Your trusted partner for the latest technology products. Quality, innovation, and excellent service since 2020.",
-    company: "Company",
-    support: "Support",
-    legal: "Legal",
+    phoneNumber: "Phone Number",
+    emailAddress: "Email Address",
+    workingHours: "Working Hours",
+    location: "Location",
     followUs: "Follow Us",
-    allRightsReserved: "All rights reserved.",
-    madeWithLove: "Made with ❤️ for tech enthusiasts",
+    socialMedia: "Social Media",
   },
-
   ru: {
-    // Navigation
     home: "Главная",
     products: "Товары",
     categories: "Категории",
@@ -346,166 +289,90 @@ export const translations = {
     contact: "Контакты",
     cart: "Корзина",
     wishlist: "Избранное",
-    login: "Вход",
+    login: "Войти",
     register: "Регистрация",
-    logout: "Выход",
-    orders: "Заказы",
-    help: "Помощь",
-    profile: "Профиль",
-    settings: "Настройки",
-
-    // Search
-    searchPlaceholder: "Поиск товаров...",
-
-    // Hero Section
-    heroTitle: "Новейшие Технологии",
-    heroSubtitle: "По Непревзойденным Ценам",
-    heroDescription:
-      "Откройте для себя передовые технологические продукты от ведущих брендов. Гарантия качества, быстрая доставка и исключительное обслуживание клиентов.",
-    shopNow: "Купить Сейчас",
-    viewCategories: "Посмотреть Категории",
-
-    // Features
-    fastDelivery: "Быстрая Доставка",
-    warranty: "2 Года Гарантии",
-    freeShipping: "Бесплатная Доставка",
-
-    // Products
-    featuredProducts: "Рекомендуемые Товары",
-    featuredDescription:
-      "Откройте для себя нашу тщательно отобранную коллекцию новейших и лучших технологических продуктов",
-    addToCart: "Добавить в Корзину",
-    addToWishlist: "Добавить в Избранное",
-    removeFromWishlist: "Удалить из Избранного",
-    inStock: "В Наличии",
-    outOfStock: "Нет в Наличии",
-    viewAllProducts: "Посмотреть Все Товары",
-
-    // Categories
-    categoriesTitle: "Категории",
-    categoriesDescription: "Изучите наш широкий ассортимент технологических категорий и найдите именно то, что ищете",
-    computers: "Компьютеры",
-    accessories: "Аксессуары",
-    smartphones: "Смартфоны",
-    laptops: "Ноутбуки",
-    audio: "Аудио",
-    wearables: "Носимые Устройства",
-    cameras: "Камеры",
-    gaming: "Игры",
-
-    // Auth
-    email: "Электронная Почта",
-    password: "Пароль",
-    name: "Имя",
-    surname: "Фамилия",
-    loginRequired: "Требуется Вход",
-    loginRequiredDesc: "Пожалуйста, войдите в систему, чтобы добавить товары в корзину.",
-
-    // Cart
-    cartTitle: "Корзина",
-    cartEmpty: "Ваша корзина пуста",
-    cartEmptyDesc: "Начните покупки, чтобы добавить товары в корзину.",
-    clearCart: "Очистить Корзину",
-    orderSummary: "Сводка Заказа",
-    total: "Итого",
-    checkout: "Оформить Заказ",
-
-    // Wishlist
-    wishlistTitle: "Избранное",
-    wishlistEmpty: "Ваш список избранного пуст",
-    wishlistEmptyDesc: "Добавьте ваши любимые товары в список избранного.",
-    clearWishlist: "Очистить Избранное",
-
-    // Theme
-    lightTheme: "Светлая Тема",
-    darkTheme: "Темная Тема",
-    systemTheme: "Системная Тема",
-    selectColor: "Выберите Цвет",
-
-    // Newsletter
-    newsletterTitle: "Будьте в Курсе",
-    newsletterDesc:
-      "Подпишитесь на нашу рассылку и первыми узнавайте о новых продуктах, эксклюзивных предложениях и технологических новостях.",
-    subscribe: "Подписаться",
-    enterEmail: "Введите ваш email",
-
-    // Loading
+    search: "Поиск",
+    addToCart: "В корзину",
+    addToWishlist: "В избранное",
+    viewDetails: "Подробнее",
+    featuredProducts: "Рекомендуемые товары",
+    newProducts: "Новые товары",
+    allProducts: "Все товары",
+    price: "Цена",
+    inStock: "В наличии",
+    outOfStock: "Нет в наличии",
+    brand: "Бренд",
+    rating: "Рейтинг",
+    reviews: "Отзывы",
+    description: "Описание",
+    specifications: "Характеристики",
+    features: "Особенности",
+    relatedProducts: "Похожие товары",
+    sortBy: "Сортировать",
+    filterBy: "Фильтровать",
+    priceRange: "Диапазон цен",
+    clearFilters: "Очистить фильтры",
+    noProductsFound: "Товары не найдены",
     loading: "Загрузка...",
-    wait: "Пожалуйста, подождите...",
-
-    // Messages
-    addedToCart: "Добавлено в Корзину",
-    addedToWishlist: "Добавлено в Избранное",
-    removedFromWishlist: "Удалено из Избранного",
-    cartCleared: "Корзина Очищена",
-    wishlistCleared: "Избранное Очищено",
-    subscribed: "Подписка Оформлена!",
-    subscribedDesc: "Спасибо за подписку на нашу рассылку.",
-
-    // Orders
-    ordersTitle: "Мои Заказы",
-    ordersDescription: "Отслеживайте статус ваших заказов",
-    orderNumber: "Номер заказа",
-    orderDate: "Дата",
-    orderStatus: "Статус",
-    orderTotal: "Сумма",
-    processing: "Обрабатывается",
-    shipped: "Отправлен",
-    delivered: "Доставлен",
-    viewDetails: "Подробности",
-    trackOrder: "Отследить",
-    reorder: "Заказать Снова",
-
-    // Profile
-    profileTitle: "Профиль",
-    profileDescription: "Управляйте информацией вашего аккаунта",
-    personalInfo: "Личная Информация",
-    contactInfo: "Контактная Информация",
-    addressInfo: "Адресная Информация",
-    editProfile: "Редактировать Профиль",
-    saveChanges: "Сохранить Изменения",
-    cancelChanges: "Отменить",
+    error: "Ошибка",
+    tryAgain: "Попробовать снова",
+    backToHome: "На главную",
+    quantity: "Количество",
+    total: "Итого",
+    checkout: "Оформить заказ",
+    continueShopping: "Продолжить покупки",
+    removeFromCart: "Удалить из корзины",
+    updateQuantity: "Изменить количество",
+    emptyCart: "Корзина пуста",
+    emptyWishlist: "Избранное пусто",
+    loginRequired: "Требуется вход",
+    pleaseLogin: "Пожалуйста, войдите",
+    email: "Email",
+    password: "Пароль",
+    confirmPassword: "Подтвердить пароль",
+    firstName: "Имя",
+    lastName: "Фамилия",
     phone: "Телефон",
     address: "Адрес",
     city: "Город",
-    zipCode: "Почтовый Индекс",
-
-    // Help
-    helpTitle: "Центр Помощи",
-    helpDescription: "Найдите ответы на ваши вопросы или свяжитесь с нами",
-    faq: "Часто Задаваемые Вопросы",
-    contactUs: "Связаться с Нами",
-    phoneSupport: "Телефонная Поддержка",
-    emailSupport: "Email Поддержка",
-    liveChat: "Онлайн Чат",
-    sendMessage: "Отправить Сообщение",
-    subject: "Тема",
-    message: "Сообщение",
-
-    // Checkout
-    checkoutTitle: "Оформление Заказа",
-    paymentInfo: "Информация об Оплате",
-    shippingAddress: "Адрес Доставки",
-    cardDetails: "Данные Карты",
-    cardName: "Имя Владельца Карты",
-    cardNumber: "Номер Карты",
-    expiryDate: "Срок Действия",
-    cvv: "CVV",
-    placeOrder: "Оформить Заказ",
-    orderComplete: "Заказ Завершен!",
-    orderSuccess: "Ваш заказ был успешно размещен и скоро будет обработан.",
-    continueShopping: "Продолжить Покупки",
-
-    // Footer
-    footerDescription:
-      "Ваш надежный партнер для новейших технологических продуктов. Качество, инновации и отличный сервис с 2020 года.",
-    company: "Компания",
-    support: "Поддержка",
-    legal: "Правовая Информация",
-    followUs: "Следите за Нами",
-    allRightsReserved: "Все права защищены.",
-    madeWithLove: "Сделано с ❤️ для любителей технологий",
+    country: "Страна",
+    zipCode: "Почтовый индекс",
+    save: "Сохранить",
+    cancel: "Отмена",
+    edit: "Редактировать",
+    delete: "Удалить",
+    confirm: "Подтвердить",
+    success: "Успешно",
+    welcome: "Добро пожаловать",
+    thankYou: "Спасибо",
+    orderPlaced: "Заказ размещен",
+    orderHistory: "История заказов",
+    profile: "Профиль",
+    settings: "Настройки",
+    logout: "Выйти",
+    darkMode: "Темная тема",
+    lightMode: "Светлая тема",
+    language: "Язык",
+    currency: "Валюта",
+    shipping: "Доставка",
+    freeShipping: "Бесплатная доставка",
+    fastDelivery: "Быстрая доставка",
+    warranty: "Гарантия",
+    returnPolicy: "Политика возврата",
+    customerSupport: "Поддержка клиентов",
+    newsletter: "Рассылка",
+    subscribe: "Подписаться",
+    unsubscribe: "Отписаться",
+    privacyPolicy: "Политика конфиденциальности",
+    termsOfService: "Условия использования",
+    faq: "Часто задаваемые вопросы",
+    help: "Помощь",
+    contactUs: "Связаться с нами",
+    phoneNumber: "Номер телефона",
+    emailAddress: "Email адрес",
+    workingHours: "Рабочие часы",
+    location: "Местоположение",
+    followUs: "Следите за нами",
+    socialMedia: "Социальные сети",
   },
 }
-
-export type TranslationKey = keyof typeof translations.az
