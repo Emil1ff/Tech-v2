@@ -58,3 +58,7 @@ export function CategorySkeleton() {
     </Card>
   )
 }
+
+export function LoadingSkeleton({ className }: { className?: string }) {
+  return <Skeleton className={className} />
+}

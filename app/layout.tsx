@@ -1,17 +1,22 @@
 import type React from "react"
+import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
-import { Provider } from "react-redux"
-import { store } from "@/store/store"
 import { AuthProvider } from "@/components/auth-provider"
+import { Providers } from "@/components/providers"
 import { PageTransition } from "@/components/page-transition"
 import { RouteProgress } from "@/components/route-progress"
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] })
+
+export const metadata: Metadata = {
+  title: "TechStore - Premium Electronics & Gadgets",
+  description:
+    "Discover the latest in technology with our premium collection of electronics, gadgets, and accessories.",
+    generator: 'v0.dev'
+}
 
 export default function RootLayout({
   children,
@@ -19,28 +24,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="az" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Provider store={store}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Providers>
             <AuthProvider>
               <RouteProgress />
-              <div className="flex min-h-screen flex-col">
-                <Header />
-                <main className="flex-1">
-                  <PageTransition>{children}</PageTransition>
-                </main>
-                <Footer />
-              </div>
+              <PageTransition>{children}</PageTransition>
               <Toaster />
             </AuthProvider>
-          </ThemeProvider>
-        </Provider>
+          </Providers>
+        </ThemeProvider>
       </body>
     </html>
   )
 }
-
-export const metadata = {
-      generator: 'v0.dev'
-    };

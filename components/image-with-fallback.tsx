@@ -1,61 +1,54 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
-import { ImageIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface ImageWithFallbackProps {
   src: string
   alt: string
   className?: string
   fallbackText?: string
+  width?: number
+  height?: number
 }
 
-export function ImageWithFallback({ src, alt, className, fallbackText }: ImageWithFallbackProps) {
-  const [imageError, setImageError] = useState(false)
-  const [imageLoading, setImageLoading] = useState(true)
+export function ImageWithFallback({ src, alt, className, fallbackText, width, height }: ImageWithFallbackProps) {
+  const [hasError, setHasError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
-  const handleImageLoad = () => {
-    setImageLoading(false)
+  const handleError = () => {
+    setHasError(true)
+    setIsLoading(false)
   }
 
-  const handleImageError = () => {
-    setImageError(true)
-    setImageLoading(false)
+  const handleLoad = () => {
+    setIsLoading(false)
   }
 
-  if (imageError) {
+  if (hasError) {
     return (
-      <div className={`flex items-center justify-center bg-muted ${className}`}>
-        <div className="text-center">
-          <ImageIcon className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
-          <p className="text-sm text-muted-foreground">{fallbackText || "Şəkil yüklənə bilmədi"}</p>
-        </div>
+      <div
+        className={cn("flex items-center justify-center bg-muted text-muted-foreground text-sm font-medium", className)}
+        style={{ width, height }}
+      >
+        {fallbackText || alt || "Image"}
       </div>
     )
   }
 
   return (
     <div className="relative">
-      {imageLoading && (
-        <div className={`absolute inset-0 flex items-center justify-center bg-muted ${className}`}>
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-          >
-            <ImageIcon className="h-8 w-8 text-muted-foreground" />
-          </motion.div>
-        </div>
+      {isLoading && (
+        <div className={cn("absolute inset-0 flex items-center justify-center bg-muted animate-pulse", className)} />
       )}
-      <motion.img
-        src={src}
+      <img
+        src={src || "/placeholder.svg"}
         alt={alt}
-        className={className}
-        onLoad={handleImageLoad}
-        onError={handleImageError}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: imageLoading ? 0 : 1 }}
-        transition={{ duration: 0.3 }}
+        className={cn(className, isLoading ? "opacity-0" : "opacity-100")}
+        onError={handleError}
+        onLoad={handleLoad}
+        width={width}
+        height={height}
       />
     </div>
   )
