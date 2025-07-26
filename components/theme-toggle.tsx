@@ -86,27 +86,27 @@ export function ThemeToggle() {
               <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100" />
             </>
           )}
-          <span className="sr-only">{t("selectColor")}</span>
+          <span className="sr-only">Tema dəyiş</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuItem onClick={() => handleThemeChange("light")} className="cursor-pointer">
           <Sun className="mr-2 h-4 w-4" />
-          {t("lightTheme")}
+          İşıqlı tema
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleThemeChange("dark")} className="cursor-pointer">
           <Moon className="mr-2 h-4 w-4" />
-          {t("darkTheme")}
+          Qaranlıq tema
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleThemeChange("system")} className="cursor-pointer">
           <Monitor className="mr-2 h-4 w-4" />
-          {t("systemTheme")}
+          Sistem
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <div className="px-2 py-1">
           <div className="flex items-center mb-2">
             <Palette className="mr-2 h-4 w-4" />
-            <span className="text-sm font-medium">{t("selectColor")}</span>
+            <span className="text-sm font-medium">Rəng seç</span>
           </div>
           <div className="grid grid-cols-3 gap-2">
             {colors.map((color) => (

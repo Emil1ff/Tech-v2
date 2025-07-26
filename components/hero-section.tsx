@@ -1,8 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Zap, Shield, Truck } from "lucide-react"
+import { ArrowRight, Star, Shield, Truck, Headphones } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { AnimatedLink } from "@/components/animated-link"
 import { useTranslation } from "@/hooks/useTranslation"
 
@@ -11,99 +12,107 @@ export function HeroSection() {
 
   const features = [
     {
-      icon: Zap,
-      title: t("fastDelivery"),
-      description: "24 saat ərzində çatdırılma",
-    },
-    {
       icon: Shield,
-      title: t("warranty"),
-      description: "2 il zəmanət",
+      title: "Keyfiyyət Zəmanəti",
+      description: "Bütün məhsullar üçün 2 il zəmanət",
     },
     {
       icon: Truck,
-      title: t("freeShipping"),
-      description: "100₼ üzəri pulsuz",
+      title: "Pulsuz Çatdırılma",
+      description: "50 AZN-dən yuxarı sifarişlər üçün",
+    },
+    {
+      icon: Headphones,
+      title: "24/7 Dəstək",
+      description: "Həftənin 7 günü müştəri xidməti",
     },
   ]
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-      <div className="container mx-auto px-4 py-24 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+
+      <div className="container mx-auto px-4 py-16 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="space-y-8"
           >
             <div className="space-y-4">
-              <motion.h1
-                className="text-4xl lg:text-6xl font-bold tracking-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                {t("heroTitle")}
-                <span className="text-primary block">{t("heroSubtitle")}</span>
-              </motion.h1>
-
-              <motion.p
-                className="text-xl text-muted-foreground max-w-lg"
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                {t("heroDescription")}
+                <Badge variant="secondary" className="mb-4">
+                  <Star className="w-3 h-3 mr-1 fill-current" />
+                  Ən Yaxşı Texnologiya Mağazası
+                </Badge>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+              >
+                Gələcəyin <span className="text-primary animate-gradient-text">Texnologiyası</span> Burada
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-lg text-muted-foreground max-w-lg"
+              >
+                Ən son texnologiya məhsullarını kəşf edin. Premium keyfiyyət, sərfəli qiymətlər və mükəmməl müştəri
+                xidməti.
               </motion.p>
             </div>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4"
             >
               <AnimatedLink href="/products">
                 <Button size="lg" className="group">
-                  {t("shopNow")}
+                  Məhsullara Bax
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </AnimatedLink>
 
               <AnimatedLink href="/categories">
                 <Button variant="outline" size="lg">
-                  {t("viewCategories")}
+                  Kateqoriyalar
                 </Button>
               </AnimatedLink>
             </motion.div>
 
-            {/* Features */}
+            {/* Stats */}
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="grid grid-cols-3 gap-8 pt-8 border-t border-border"
             >
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.title}
-                  className="flex items-center space-x-3"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <feature.icon className="w-5 h-5 text-primary" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-sm">{feature.title}</h3>
-                    <p className="text-xs text-muted-foreground">{feature.description}</p>
-                  </div>
-                </motion.div>
-              ))}
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">1000+</div>
+                <div className="text-sm text-muted-foreground">Məhsul</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">50K+</div>
+                <div className="text-sm text-muted-foreground">Müştəri</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">99%</div>
+                <div className="text-sm text-muted-foreground">Məmnuniyyət</div>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -111,60 +120,64 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="relative"
           >
-            <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20">
+            <div className="relative z-10">
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"
-                animate={{
-                  background: [
-                    "linear-gradient(45deg, rgba(59, 130, 246, 0.1), transparent)",
-                    "linear-gradient(225deg, rgba(59, 130, 246, 0.1), transparent)",
-                    "linear-gradient(45deg, rgba(59, 130, 246, 0.1), transparent)",
-                  ],
-                }}
-                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-              />
-
-              {/* Placeholder for hero image */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  className="w-64 h-64 rounded-full bg-primary/20 flex items-center justify-center"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "linear",
-                  }}
-                >
-                  <Zap className="w-32 h-32 text-primary" />
-                </motion.div>
-              </div>
-
-              {/* Floating elements */}
-              <motion.div
-                className="absolute top-4 right-4 w-16 h-16 rounded-full bg-secondary/30 backdrop-blur-sm"
                 animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-              />
-              <motion.div
-                className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-primary/30 backdrop-blur-sm"
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-              />
+                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                className="relative"
+              >
+                <img
+                  src="/placeholder.svg?height=500&width=600&text=Hero+Tech+Products"
+                  alt="Tech Products"
+                  className="w-full h-auto rounded-2xl shadow-2xl"
+                />
+
+                {/* Floating Elements */}
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                  className="absolute -top-4 -right-4 w-16 h-16 bg-primary/20 rounded-full blur-xl"
+                />
+
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                  className="absolute -bottom-4 -left-4 w-20 h-20 bg-secondary/30 rounded-full blur-xl"
+                />
+              </motion.div>
             </div>
+
+            {/* Background Decoration */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-2xl -z-10 transform rotate-3" />
           </motion.div>
         </div>
-      </div>
 
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-secondary/5 blur-3xl" />
+        {/* Features */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20"
+        >
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
+              className="text-center group"
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300 mb-4">
+                <feature.icon className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground">{feature.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )

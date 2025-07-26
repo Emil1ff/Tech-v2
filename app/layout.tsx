@@ -2,19 +2,23 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
+import { Provider } from "react-redux"
+import { store } from "@/store/store"
 import { AuthProvider } from "@/components/auth-provider"
-import { Providers } from "@/components/providers"
 import { PageTransition } from "@/components/page-transition"
 import { RouteProgress } from "@/components/route-progress"
-import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "TechStore - Premium Electronics & Gadgets",
+  title: "TechStore - Ən Son Texnologiya Məhsulları",
   description:
-    "Discover the latest in technology with our premium collection of electronics, gadgets, and accessories.",
+    "Top brendlərdən ən son texnologiya məhsullarını kəşf edin. Keyfiyyət zəmanəti, sürətli çatdırılma və mükəmməl müştəri xidməti.",
+  keywords: "texnologiya, elektronika, kompüter, telefon, laptop, aksesuar",
     generator: 'v0.dev'
 }
 
@@ -24,17 +28,23 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="az" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Providers>
+        <Provider store={store}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <AuthProvider>
               <RouteProgress />
-              <PageTransition>{children}</PageTransition>
+              <div className="flex min-h-screen flex-col">
+                <Header />
+                <main className="flex-1">
+                  <PageTransition>{children}</PageTransition>
+                </main>
+                <Footer />
+              </div>
               <Toaster />
             </AuthProvider>
-          </Providers>
-        </ThemeProvider>
+          </ThemeProvider>
+        </Provider>
       </body>
     </html>
   )

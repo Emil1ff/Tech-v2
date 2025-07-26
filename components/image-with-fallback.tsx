@@ -1,37 +1,29 @@
 "use client"
 
 import { useState } from "react"
-import { cn } from "@/lib/utils"
+import Image from "next/image"
+import { ImageOff } from "lucide-react"
 
 interface ImageWithFallbackProps {
   src: string
   alt: string
+  width: number
+  height: number
   className?: string
   fallbackText?: string
-  width?: number
-  height?: number
 }
 
-export function ImageWithFallback({ src, alt, className, fallbackText, width, height }: ImageWithFallbackProps) {
+export function ImageWithFallback({ src, alt, width, height, className = "", fallbackText }: ImageWithFallbackProps) {
   const [hasError, setHasError] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
-  const handleError = () => {
-    setHasError(true)
-    setIsLoading(false)
-  }
-
-  const handleLoad = () => {
-    setIsLoading(false)
-  }
-
   if (hasError) {
     return (
-      <div
-        className={cn("flex items-center justify-center bg-muted text-muted-foreground text-sm font-medium", className)}
-        style={{ width, height }}
-      >
-        {fallbackText || alt || "Image"}
+      <div className={`flex items-center justify-center bg-muted ${className}`} style={{ width, height }}>
+        <div className="text-center text-muted-foreground">
+          <ImageOff className="w-8 h-8 mx-auto mb-2" />
+          <p className="text-sm">{fallbackText || "Şəkil yüklənmədi"}</p>
+        </div>
       </div>
     )
   }
@@ -39,16 +31,16 @@ export function ImageWithFallback({ src, alt, className, fallbackText, width, he
   return (
     <div className="relative">
       {isLoading && (
-        <div className={cn("absolute inset-0 flex items-center justify-center bg-muted animate-pulse", className)} />
+        <div className={`absolute inset-0 bg-muted animate-pulse ${className}`} style={{ width, height }} />
       )}
-      <img
+      <Image
         src={src || "/placeholder.svg"}
         alt={alt}
-        className={cn(className, isLoading ? "opacity-0" : "opacity-100")}
-        onError={handleError}
-        onLoad={handleLoad}
         width={width}
         height={height}
+        className={className}
+        onError={() => setHasError(true)}
+        onLoad={() => setIsLoading(false)}
       />
     </div>
   )

@@ -1,96 +1,128 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
+import { Smartphone, Laptop, Headphones, Watch, Tablet, Camera, Gamepad2, Monitor } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Smartphone, Laptop, Headphones, Watch, Camera, Gamepad2 } from "lucide-react"
-import Link from "next/link"
+import { Badge } from "@/components/ui/badge"
+import { AnimatedLink } from "@/components/animated-link"
 import { useTranslation } from "@/hooks/useTranslation"
-import { CategorySkeleton } from "@/components/loading-skeleton"
+
+const categories = [
+  {
+    id: 1,
+    name: "Smartfonlar",
+    icon: Smartphone,
+    count: 156,
+    color: "bg-blue-500",
+    href: "/categories/smartphones",
+  },
+  {
+    id: 2,
+    name: "Laptoplar",
+    icon: Laptop,
+    count: 89,
+    color: "bg-green-500",
+    href: "/categories/laptops",
+  },
+  {
+    id: 3,
+    name: "Audio",
+    icon: Headphones,
+    count: 234,
+    color: "bg-purple-500",
+    href: "/categories/audio",
+  },
+  {
+    id: 4,
+    name: "Ağıllı Saatlar",
+    icon: Watch,
+    count: 67,
+    color: "bg-orange-500",
+    href: "/categories/watches",
+  },
+  {
+    id: 5,
+    name: "Tabletlər",
+    icon: Tablet,
+    count: 45,
+    color: "bg-red-500",
+    href: "/categories/tablets",
+  },
+  {
+    id: 6,
+    name: "Kameralar",
+    icon: Camera,
+    count: 78,
+    color: "bg-pink-500",
+    href: "/categories/cameras",
+  },
+  {
+    id: 7,
+    name: "Oyun",
+    icon: Gamepad2,
+    count: 123,
+    color: "bg-indigo-500",
+    href: "/categories/gaming",
+  },
+  {
+    id: 8,
+    name: "Monitorlar",
+    icon: Monitor,
+    count: 92,
+    color: "bg-teal-500",
+    href: "/categories/monitors",
+  },
+]
 
 export function CategoryGrid() {
-  const [isLoading, setIsLoading] = useState(true)
   const { t } = useTranslation()
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 800)
-
-    return () => clearTimeout(timer)
-  }, [])
-
-  const categories = [
-    {
-      name: t("smartphones"),
-      icon: Smartphone,
-      href: "/products?category=smartphones",
-      color: "bg-blue-500/10 text-blue-600 hover:bg-blue-500/20",
-    },
-    {
-      name: t("laptops"),
-      icon: Laptop,
-      href: "/products?category=computers",
-      color: "bg-green-500/10 text-green-600 hover:bg-green-500/20",
-    },
-    {
-      name: t("audio"),
-      icon: Headphones,
-      href: "/products?category=accessories",
-      color: "bg-purple-500/10 text-purple-600 hover:bg-purple-500/20",
-    },
-    {
-      name: t("wearables"),
-      icon: Watch,
-      href: "/products?category=accessories",
-      color: "bg-orange-500/10 text-orange-600 hover:bg-orange-500/20",
-    },
-    {
-      name: t("cameras"),
-      icon: Camera,
-      href: "/products?category=accessories",
-      color: "bg-red-500/10 text-red-600 hover:bg-red-500/20",
-    },
-    {
-      name: t("gaming"),
-      icon: Gamepad2,
-      href: "/products?category=accessories",
-      color: "bg-indigo-500/10 text-indigo-600 hover:bg-indigo-500/20",
-    },
-  ]
-
   return (
-    <section className="py-16 bg-muted/30 animate-fade-in">
+    <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-slide-up">
-          <h2 className="text-3xl font-bold mb-4 animate-gradient-text">{t("categoriesTitle")}</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("categoriesDescription")}</p>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Kateqoriyalar</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Geniş məhsul çeşidimizi kateqoriyalar üzrə araşdırın
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {isLoading
-            ? [...Array(6)].map((_, index) => <CategorySkeleton key={index} />)
-            : categories.map((category, index) => {
-                const Icon = category.icon
-                return (
-                  <Link key={category.name} href={category.href}>
-                    <Card
-                      className="group hover:shadow-lg transition-all duration-500 hover:-translate-y-2 animate-fade-in"
-                      style={{ animationDelay: `${index * 100}ms` }}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          {categories.map((category, index) => (
+            <motion.div
+              key={category.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <AnimatedLink href={category.href}>
+                <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                  <CardContent className="p-6 text-center">
+                    <div
+                      className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${category.color} mb-4 group-hover:scale-110 transition-transform duration-300`}
                     >
-                      <CardContent className="p-6 text-center">
-                        <div
-                          className={`inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 ${category.color}`}
-                        >
-                          <Icon className="h-8 w-8 transition-transform duration-300 group-hover:scale-110" />
-                        </div>
-                        <h3 className="font-semibold text-sm transition-all duration-300 group-hover:text-primary group-hover:scale-105">
-                          {category.name}
-                        </h3>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                )
-              })}
+                      <category.icon className="w-8 h-8 text-white" />
+                    </div>
+
+                    <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                      {category.name}
+                    </h3>
+
+                    <Badge variant="secondary" className="text-xs">
+                      {category.count} məhsul
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </AnimatedLink>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
