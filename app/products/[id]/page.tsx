@@ -14,7 +14,6 @@ import { Star, ShoppingCart, Heart, ArrowLeft, Check, ImageIcon } from "lucide-r
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import { useTranslation } from "@/hooks/useTranslation"
 
 export default function ProductDetailPage() {
   const params = useParams()
@@ -27,7 +26,6 @@ export default function ProductDetailPage() {
   const { items: wishlistItems } = useSelector((state: RootState) => state.wishlist)
   const { isAuthenticated } = useSelector((state: RootState) => state.auth)
   const { toast } = useToast()
-  const { t } = useTranslation()
 
   const product = products.find((p) => p.id === productId)
 
@@ -54,8 +52,8 @@ export default function ProductDetailPage() {
   const handleAddToCart = () => {
     if (!isAuthenticated) {
       toast({
-        title: t("loginRequired"),
-        description: t("loginRequiredDesc"),
+        title: "Giriş tələb olunur",
+        description: "Səbətə əlavə etmək üçün hesaba giriş edin.",
         variant: "destructive",
       })
       return
@@ -70,16 +68,16 @@ export default function ProductDetailPage() {
       }),
     )
     toast({
-      title: t("addedToCart"),
-      description: `${product.name} ${t("addedToCart").toLowerCase()}.`,
+      title: "Səbətə əlavə edildi",
+      description: `${product.name} səbətə əlavə edildi.`,
     })
   }
 
   const handleWishlistToggle = () => {
     if (!isAuthenticated) {
       toast({
-        title: t("loginRequired"),
-        description: t("loginRequiredDesc"),
+        title: "Giriş tələb olunur",
+        description: "İstək siyahısına əlavə etmək üçün hesaba giriş edin.",
         variant: "destructive",
       })
       return
@@ -88,14 +86,14 @@ export default function ProductDetailPage() {
     if (wishlistItems.includes(product.id)) {
       dispatch(removeFromWishlist(product.id))
       toast({
-        title: t("removedFromWishlist"),
-        description: t("removedFromWishlist"),
+        title: "İstək siyahısından silindi",
+        description: "Məhsul istək siyahısından silindi.",
       })
     } else {
       dispatch(addToWishlist(product.id))
       toast({
-        title: t("addedToWishlist"),
-        description: t("addedToWishlist"),
+        title: "İstək siyahısına əlavə edildi",
+        description: "Məhsul istək siyahısına əlavə edildi.",
       })
     }
   }
@@ -124,7 +122,7 @@ export default function ProductDetailPage() {
         className="mb-6"
       >
         <Link href="/products" className="text-muted-foreground hover:text-primary">
-          {t("products")}
+          Məhsullar
         </Link>
         <span className="mx-2 text-muted-foreground">/</span>
         <span className="capitalize">{product.category}</span>
@@ -189,7 +187,7 @@ export default function ProductDetailPage() {
               {product.inStock && (
                 <Badge variant="outline" className="text-green-600 border-green-600">
                   <Check className="mr-1 h-3 w-3" />
-                  {t("inStock")}
+                  Stokda
                 </Badge>
               )}
             </div>
@@ -248,7 +246,7 @@ export default function ProductDetailPage() {
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
               <Button size="lg" className="w-full" onClick={handleAddToCart} disabled={!product.inStock}>
                 <ShoppingCart className="mr-2 h-5 w-5" />
-                {product.inStock ? t("addToCart") : t("outOfStock")}
+                {product.inStock ? "Səbətə əlavə et" : "Stokda yoxdur"}
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>

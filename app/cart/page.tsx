@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import { useTranslation } from "@/hooks/useTranslation"
 import Link from "next/link"
 
 export default function CartPage() {
@@ -18,7 +17,6 @@ export default function CartPage() {
   const { items, total } = useSelector((state: RootState) => state.cart)
   const { isAuthenticated } = useSelector((state: RootState) => state.auth)
   const { toast } = useToast()
-  const { t } = useTranslation()
 
   if (!isAuthenticated) {
     return (

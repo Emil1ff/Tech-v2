@@ -6,8 +6,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
-import { Provider } from "react-redux"
-import { store } from "@/store/store"
+import { Providers } from "@/components/providers"
 import { AuthProvider } from "@/components/auth-provider"
 import { PageTransition } from "@/components/page-transition"
 import { RouteProgress } from "@/components/route-progress"
@@ -30,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="az" suppressHydrationWarning>
       <body className={inter.className}>
-        <Provider store={store}>
+        <Providers>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <AuthProvider>
               <RouteProgress />
@@ -44,7 +43,7 @@ export default function RootLayout({
               <Toaster />
             </AuthProvider>
           </ThemeProvider>
-        </Provider>
+        </Providers>
       </body>
     </html>
   )
