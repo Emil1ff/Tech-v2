@@ -46,16 +46,16 @@ export default function ProductsPage() {
   const { t } = useTranslation()
 
   const categories = [
-    { value: "all", label: t("categoriesTitle") },
-    { value: "computers", label: t("computers") },
-    { value: "accessories", label: t("accessories") },
+    { value: "all", label: "Hamısı" },
+    { value: "computers", label: "Kompüterlər" },
+    { value: "accessories", label: "Aksesuarlar" },
   ]
 
   const handleAddToCart = (product: any) => {
     if (!isAuthenticated) {
       toast({
-        title: t("loginRequired"),
-        description: t("loginRequiredDesc"),
+        title: "Giriş tələb olunur",
+        description: "Səbətə əlavə etmək üçün hesaba giriş edin.",
         variant: "destructive",
       })
       return
@@ -70,16 +70,16 @@ export default function ProductsPage() {
       }),
     )
     toast({
-      title: t("addedToCart"),
-      description: `${product.name} ${t("addedToCart").toLowerCase()}.`,
+      title: "Səbətə əlavə edildi",
+      description: `${product.name} səbətə əlavə edildi.`,
     })
   }
 
   const handleWishlistToggle = (productId: number) => {
     if (!isAuthenticated) {
       toast({
-        title: t("loginRequired"),
-        description: t("loginRequiredDesc"),
+        title: "Giriş tələb olunur",
+        description: "İstək siyahısına əlavə etmək üçün hesaba giriş edin.",
         variant: "destructive",
       })
       return
@@ -88,14 +88,14 @@ export default function ProductsPage() {
     if (wishlistItems.includes(productId)) {
       dispatch(removeFromWishlist(productId))
       toast({
-        title: t("removedFromWishlist"),
-        description: t("removedFromWishlist"),
+        title: "İstək siyahısından silindi",
+        description: "Məhsul istək siyahısından silindi.",
       })
     } else {
       dispatch(addToWishlist(productId))
       toast({
-        title: t("addedToWishlist"),
-        description: t("addedToWishlist"),
+        title: "İstək siyahısına əlavə edildi",
+        description: "Məhsul istək siyahısına əlavə edildi.",
       })
     }
   }
@@ -113,7 +113,7 @@ export default function ProductsPage() {
         transition={{ duration: 0.5 }}
         className="mb-8"
       >
-        <h1 className="text-4xl font-bold mb-4">{t("products")}</h1>
+        <h1 className="text-4xl font-bold mb-4">Məhsullar</h1>
         <p className="text-muted-foreground text-lg mb-6">Ən son texnologiya məhsullarını kəşf edin</p>
 
         {/* Category Filter */}
@@ -176,7 +176,7 @@ export default function ProductsPage() {
                   </motion.div>
                   {product.inStock && (
                     <Badge className="absolute top-2 left-2" variant="secondary">
-                      {t("inStock")}
+                      Stokda
                     </Badge>
                   )}
                 </div>
@@ -213,7 +213,7 @@ export default function ProductsPage() {
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full">
                   <Button className="w-full" onClick={() => handleAddToCart(product)} disabled={!product.inStock}>
                     <ShoppingCart className="mr-2 h-4 w-4" />
-                    {product.inStock ? t("addToCart") : t("outOfStock")}
+                    {product.inStock ? "Səbətə əlavə et" : "Stokda yoxdur"}
                   </Button>
                 </motion.div>
               </CardFooter>

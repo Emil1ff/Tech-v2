@@ -1,12 +1,16 @@
 "use client"
 
+import { motion } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
 import type { RootState, AppDispatch } from "@/store/store"
 import { setSelectedCategory } from "@/store/slices/productsSlice"
 import { Card, CardContent } from "@/components/ui/card"
-import { Laptop, Mouse } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Laptop, Mouse, Smartphone, Headphones, Watch, Camera, Gamepad2, Monitor } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useTranslation } from "@/hooks/useTranslation"
 
 const categories = [
   {
@@ -16,6 +20,7 @@ const categories = [
     description: "Laptop, desktop və iMac kompüterlər",
     color: "bg-blue-500/10 text-blue-600",
     count: 5,
+    image: "/placeholder.svg?height=200&width=300&text=Computers",
   },
   {
     name: "Aksesuarlar",
@@ -24,13 +29,92 @@ const categories = [
     description: "Siçan, klaviatura, monitor və digər aksesuarlar",
     color: "bg-green-500/10 text-green-600",
     count: 3,
+    image: "/placeholder.svg?height=200&width=300&text=Accessories",
+  },
+  {
+    name: "Smartfonlar",
+    value: "smartphones",
+    icon: Smartphone,
+    description: "iPhone, Samsung, Xiaomi və digər smartfonlar",
+    color: "bg-purple-500/10 text-purple-600",
+    count: 8,
+    image: "/placeholder.svg?height=200&width=300&text=Smartphones",
+  },
+  {
+    name: "Audio",
+    value: "audio",
+    icon: Headphones,
+    description: "Qulaqlıq, dinamik və audio aksesuarları",
+    color: "bg-orange-500/10 text-orange-600",
+    count: 6,
+    image: "/placeholder.svg?height=200&width=300&text=Audio",
+  },
+  {
+    name: "Ağıllı Saatlar",
+    value: "watches",
+    icon: Watch,
+    description: "Apple Watch, Samsung Galaxy Watch və digərləri",
+    color: "bg-red-500/10 text-red-600",
+    count: 4,
+    image: "/placeholder.svg?height=200&width=300&text=Smart+Watches",
+  },
+  {
+    name: "Kameralar",
+    value: "cameras",
+    icon: Camera,
+    description: "DSLR, mirrorless və action kameralar",
+    color: "bg-pink-500/10 text-pink-600",
+    count: 3,
+    image: "/placeholder.svg?height=200&width=300&text=Cameras",
+  },
+  {
+    name: "Oyun",
+    value: "gaming",
+    icon: Gamepad2,
+    description: "Oyun konsolları, oyun aksesuarları",
+    color: "bg-indigo-500/10 text-indigo-600",
+    count: 7,
+    image: "/placeholder.svg?height=200&width=300&text=Gaming",
+  },
+  {
+    name: "Monitorlar",
+    value: "monitors",
+    icon: Monitor,
+    description: "4K, gaming və professional monitorlar",
+    color: "bg-teal-500/10 text-teal-600",
+    count: 5,
+    image: "/placeholder.svg?height=200&width=300&text=Monitors",
   },
 ]
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+}
 
 export default function CategoriesPage() {
   const dispatch = useDispatch<AppDispatch>()
   const router = useRouter()
   const { products } = useSelector((state: RootState) => state.products)
+  const { t } = useTranslation()
 
   const handleCategoryClick = (categoryValue: string) => {
     dispatch(setSelectedCategory(categoryValue))
@@ -42,83 +126,135 @@ export default function CategoriesPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Kateqoriyalar</h1>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Geniş məhsul kateqoriyalarımızı kəşf edin və axtardığınız texnologiya məhsullarını tapın
-        </p>
-      </div>
+    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="container mx-auto px-4">
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <Badge variant="secondary" className="mb-4">
+              Kateqoriyalar
+            </Badge>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+              Məhsul <span className="text-primary">Kateqoriyaları</span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Geniş məhsul kateqoriyalarımızı kəşf edin və axtardığınız texnologiya məhsullarını tapın. Hər kateqoriyada
+              ən yaxşı brendlərdən seçilmiş məhsullar.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-        {categories.map((category) => {
-          const Icon = category.icon
-          const count = getCategoryCount(category.value)
+      {/* Categories Grid */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <motion.div
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          >
+            {categories.map((category, index) => {
+              const Icon = category.icon
+              const count = getCategoryCount(category.value) || category.count
 
-          return (
-            <Card
-              key={category.value}
-              className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-              onClick={() => handleCategoryClick(category.value)}
-            >
-              <CardContent className="p-8 text-center">
-                <div
-                  className={`inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 ${category.color} group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <Icon className="h-10 w-10" />
-                </div>
-                <h3 className="font-bold text-xl mb-2">{category.name}</h3>
-                <p className="text-muted-foreground mb-4">{category.description}</p>
-                <div className="text-sm text-primary font-medium">{count} məhsul mövcuddur</div>
-              </CardContent>
-            </Card>
-          )
-        })}
-      </div>
+              return (
+                <motion.div key={category.value} variants={itemVariants}>
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer overflow-hidden">
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={category.image || "/placeholder.svg"}
+                        alt={category.name}
+                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div
+                          className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${category.color} mb-2`}
+                        >
+                          <Icon className="h-6 w-6" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-bold text-xl group-hover:text-primary transition-colors">
+                          {category.name}
+                        </h3>
+                        <Badge variant="secondary">{count} məhsul</Badge>
+                      </div>
+                      <p className="text-muted-foreground mb-4 text-sm">{category.description}</p>
+                      <Button className="w-full" onClick={() => handleCategoryClick(category.value)}>
+                        Kateqoriyaya Bax
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </div>
+      </section>
 
       {/* Popular Products by Category */}
-      <div className="space-y-12">
-        {categories.map((category) => {
-          const categoryProducts = products.filter((product) => product.category === category.value).slice(0, 3)
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Populyar Məhsullar</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Hər kateqoriyadan ən çox satılan və populyar məhsullar
+            </p>
+          </motion.div>
 
-          if (categoryProducts.length === 0) return null
+          <div className="space-y-12">
+            {categories.slice(0, 3).map((category, categoryIndex) => {
+              const categoryProducts = products.filter((product) => product.category === category.value).slice(0, 3)
 
-          return (
-            <div key={category.value}>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold">{category.name}</h2>
-                <Link
-                  href="/products"
-                  onClick={() => dispatch(setSelectedCategory(category.value))}
-                  className="text-primary hover:underline"
-                >
-                  Hamısını gör
-                </Link>
-              </div>
+              if (categoryProducts.length === 0) return null
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categoryProducts.map((product) => (
-                  <Link key={product.id} href={`/products/${product.id}`}>
-                    <Card className="group hover:shadow-lg transition-all duration-300">
-                      <CardContent className="p-4">
-                        <img
-                          src={product.image || "/placeholder.svg"}
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg bg-muted/50 mb-4 group-hover:scale-105 transition-transform"
-                        />
-                        <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                          {product.name}
-                        </h3>
-                        <p className="text-2xl font-bold">${product.price}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
+              return (
+                <motion.div key={category.value} variants={itemVariants} className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 rounded-lg ${category.color}`}>
+                        <category.icon className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-2xl font-bold">{category.name}</h3>
+                    </div>
+                    <Button variant="outline" onClick={() => handleCategoryClick(category.value)}>
+                      Hamısını Gör
+                    </Button>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {categoryProducts.map((product) => (
+                      <Link key={product.id} href={`/products/${product.id}`}>
+                        <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                          <CardContent className="p-4">
+                            <img
+                              src={product.image || "/placeholder.svg"}
+                              alt={product.name}
+                              className="w-full h-48 object-cover rounded-lg bg-muted/50 mb-4 group-hover:scale-105 transition-transform"
+                            />
+                            <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                              {product.name}
+                            </h4>
+                            <div className="flex items-center justify-between">
+                              <p className="text-2xl font-bold text-primary">${product.price}</p>
+                              <Badge variant={product.inStock ? "default" : "secondary"}>
+                                {product.inStock ? "Stokda" : "Stokda yox"}
+                              </Badge>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+    </motion.div>
   )
 }
