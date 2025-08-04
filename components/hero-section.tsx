@@ -130,7 +130,7 @@ export function HeroSection() {
                 className="relative"
               >
                 <img
-                  src="/placeholder.svg?height=500&width=600&text=Hero+Tech+Products"
+                  src="https://i.pinimg.com/736x/90/56/d3/9056d37cff0fcead7492b2a4fb4b01cf.jpg"
                   alt="Tech Products"
                   className="w-full h-auto rounded-2xl shadow-2xl"
                 />
