@@ -20,7 +20,7 @@ const categories = [
     description: "Laptop, desktop və iMac kompüterlər",
     color: "bg-blue-500/10 text-blue-600",
     count: 5,
-    image: "/placeholder.svg?height=200&width=300&text=Computers",
+    image: "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/SPZ1B-Platinum-15-BB-00?qlt=90&wid=1253&hei=705&extendN=0.12,0.12,0.12,0.12&bgc=FFFFFFFF&fmt=jpg",
   },
   {
     name: "Aksesuarlar",
@@ -29,7 +29,7 @@ const categories = [
     description: "Siçan, klaviatura, monitor və digər aksesuarlar",
     color: "bg-green-500/10 text-green-600",
     count: 3,
-    image: "/placeholder.svg?height=200&width=300&text=Accessories",
+    image: "https://img5.lalafo.com/i/posters/api/c9/e7/d8/yeni-gaming-klaviatura-id-41595029-836567860.jpeg",
   },
   {
     name: "Smartfonlar",
@@ -38,7 +38,7 @@ const categories = [
     description: "iPhone, Samsung, Xiaomi və digər smartfonlar",
     color: "bg-purple-500/10 text-purple-600",
     count: 8,
-    image: "/placeholder.svg?height=200&width=300&text=Smartphones",
+    image: "https://www.apple.com/ecc-shared/iphone/home/images/meta/iphone__kqge21l9n26q_og.png",
   },
   {
     name: "Audio",
@@ -47,16 +47,16 @@ const categories = [
     description: "Qulaqlıq, dinamik və audio aksesuarları",
     color: "bg-orange-500/10 text-orange-600",
     count: 6,
-    image: "/placeholder.svg?height=200&width=300&text=Audio",
+    image: "https://cdn.mos.cms.futurecdn.net/kbrdKHwjXBwSp9uiY8hejP.jpg",
   },
   {
     name: "Ağıllı Saatlar",
     value: "watches",
     icon: Watch,
-    description: "Apple Watch, Samsung Galaxy Watch və digərləri",
+    description: "Apple Watch, Samsung Galaxy Watch",
     color: "bg-red-500/10 text-red-600",
     count: 4,
-    image: "/placeholder.svg?height=200&width=300&text=Smart+Watches",
+    image: "https://www.apple.com/v/watch/br/images/overview/welcome/startframe__crid1brghxw2_xlarge.jpg",
   },
   {
     name: "Kameralar",
@@ -65,7 +65,7 @@ const categories = [
     description: "DSLR, mirrorless və action kameralar",
     color: "bg-pink-500/10 text-pink-600",
     count: 3,
-    image: "/placeholder.svg?height=200&width=300&text=Cameras",
+    image: "https://cdn.mos.cms.futurecdn.net/4wpKrH93D37dDPTisdqGy4.jpg",
   },
   {
     name: "Oyun",
@@ -74,7 +74,7 @@ const categories = [
     description: "Oyun konsolları, oyun aksesuarları",
     color: "bg-indigo-500/10 text-indigo-600",
     count: 7,
-    image: "/placeholder.svg?height=200&width=300&text=Gaming",
+    image: "https://niceboy.eu/files/produkt/oryx-gamepad/oryx-gamepad-gallery-06.jpg",
   },
   {
     name: "Monitorlar",
@@ -83,7 +83,7 @@ const categories = [
     description: "4K, gaming və professional monitorlar",
     color: "bg-teal-500/10 text-teal-600",
     count: 5,
-    image: "/placeholder.svg?height=200&width=300&text=Monitors",
+    image: "https://www.hp.com/content/dam/sites/worldwide/personal-computers/consumer/monitors-accessories/computer-monitors-redesign/hero-banner-desktop@2x.jpg",
   },
 ]
 
